@@ -1,0 +1,49 @@
+.removeSection {
+    padding-top: 10px;
+    font-size: 30px;
+}
+
+.article_group {
+    border-bottom: 1px solid #eee;
+    padding: 12px;
+}
+
+.editIco {
+    color: #1c3f95;
+    font-weight: 500;
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+.editIcoWrap {
+    padding-top: 20px;
+}
+
+#empty_state {
+    padding: 10px;
+    margin: 20% 15%;
+    text-align: center;
+}
+
+#empty_state h1 {
+    color: #1c3f95;
+}
+
+#empty_state p {
+    color: #000;
+    font-size: 18px;
+}
+
+.toggleSearch {
+    background: none;
+    box-shadow: none;
+    color: #1c3f95;
+    padding-top: 0px;
+    font-size: 18px;
+    margin-top: 0px;
+}
+
+.toggleSearch:hover {
+    background: none;
+    background-color: none !important;
+    box-shadow: none;
+}

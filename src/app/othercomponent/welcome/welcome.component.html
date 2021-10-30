@@ -1,0 +1,26 @@
+<ion-content>
+  <ion-slides pager="{{pagerOption}}" (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <div class="slide">
+        <img src="assets/WelcomeNew.png" />
+        <h1> Welcome! </h1>
+        <p>To the Simpson Motors Staff Portal. Now you can keep up-to-date with the latest general and staff news. </p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/slide_StaffGenStories.png" style="width:350px;" />
+      <h1> Let's Get Started. </h1>
+      <p> Articles are categorised into staff and general sections for easy reading and navigation. </p>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/Welcome_slide_new.png" />
+      <h1> Article Search. </h1>
+      <p> Easily search for archived articles from both staff and general news. </p>
+       
+      <ion-button color="primary" (click)="skipIntro()">Start App !</ion-button>
+
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<button id="startApp" ion-button color="light" (click)="skipIntro()">{{appbuttontext}}</button>

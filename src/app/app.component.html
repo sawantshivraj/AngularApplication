@@ -1,0 +1,56 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title class="color_blue">Staff Portal Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <!-- <ion-card class="menucard" no-padding no-margin>
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="assets/user.png">
+            </ion-avatar>
+            <h2>Welcome</h2>
+          </ion-item>
+        </ion-card> -->
+
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" class="menutotoggle">
+            <ion-item routerLink="/home" routerDirection="root" menuClose>
+              <ion-icon class="menu_icon" name="home"></ion-icon> Home
+            </ion-item>
+            <ion-item routerLink="/fav" menuClose>
+              <ion-icon class="menu_icon" name="star-outline"></ion-icon> My List
+            </ion-item>
+            <ion-item (click)="checkForUpdate()" menuClose>
+              <ion-icon class="menu_icon" name="cloud"></ion-icon> Check For Updates
+            </ion-item>
+            <!-- <ion-item (click)="goToUpdate()" *ngIf="isUpdateAvailable" menuClose> Install Update </ion-item> -->
+            <ion-item (click)="logout()" menuClose>
+              <ion-icon class="menu_icon" name="log-out" ios="ios-log-out"></ion-icon> Sign Out
+            </ion-item>
+            <ion-item (click)="Exit()" menuClose>
+              <ion-icon class="menu_icon" name="close"></ion-icon> Exit
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <span class="versionsec" (click)="copytoclipboard()">
+          {{playerID}}
+        </span>
+      </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <ion-title> App Version: {{version_code}} </ion-title>
+        </ion-toolbar>
+      </ion-footer>
+    </ion-menu>
+
+    <div *ngIf="isUpdateAvailable">
+      <h4 class="boldme"> Application Update Available </h4>
+      <span [innerHTML]="progressStatus"></span>
+    </div>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

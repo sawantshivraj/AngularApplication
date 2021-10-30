@@ -1,0 +1,73 @@
+ <ion-header>
+   <ion-toolbar>
+     <ion-buttons slot="start" (click)="dismiss()" class="btnBack">
+       <ion-icon name="close"></ion-icon> Close
+     </ion-buttons>
+     <ion-title class="makeAdjust" align-title="center" mode="ios">
+       <img src="assets/logo.png" width="80px">
+     </ion-title>
+   </ion-toolbar>
+ </ion-header>
+ <ion-content class="searchBg">
+   <ion-row text-center *ngIf="searchTextDisplay">
+     <ion-col class="searchGroup">
+       <h3> Search </h3>
+       <p> Discover Articles, Product Releases, New Staff and more ! </p>
+     </ion-col>
+   </ion-row>
+
+   <ion-searchbar (ionInput)="getItems($event)" (animated)="true" [showCancelButton]="true"></ion-searchbar>
+   <h4 class="list_heading"> <span *ngIf="searchTextDisplay == false"> Results <span *ngIf="resText">{{resText}}</span>
+     </span>
+     <ion-spinner *ngIf="loadingResults" class="resultsLoader" stroke="#fff"></ion-spinner>
+   </h4>
+   <p class="text_small_heading" *ngIf="searchList.length > 0"> {{searchList.length}} results found. </p>
+
+   <!-- <ion-list *ngIf="searchTextDisplay == false"> -->
+   <!-- <div class="" *ngIf="showInternal">
+       <ion-item text-wrap class="item-text-wrap" *ngFor="let item of items" (click)="pushPage(item)">
+         <h2 class="post_title" [innerHTML]="item.title"></h2>
+         <ion-note class="post-date">
+           <ion-icon name="calendar"></ion-icon> {{globleapi.convertDate(item.date)}}
+         </ion-note>
+       </ion-item>
+     </div> -->
+   <!-- 
+     <ion-item text-wrap class="item-text-wrap" *ngFor="let item of searchList" (click)="pushPage(item)">
+       <h2 class="post_title" [innerHTML]="item.title"></h2>
+       <ion-note class="post-date">
+         <ion-icon name="calendar"></ion-icon> {{globleapi.convertDate(item.date)}}
+       </ion-note>
+     </ion-item> -->
+
+   <!-- </ion-list> -->
+   <div *ngIf="searchTextDisplay == false">
+     <ion-grid *ngIf="showInternal">
+       <div *ngFor="let item of items; let i = index">
+         <ion-row class="article_group">
+           <ion-col (click)="pushPage(item)" size="11">
+             <h2 class="post_title item-text-wrap" [innerHTML]="item.title"></h2>
+             <ion-note class="post-date">
+               <ion-icon name="calendar"></ion-icon>
+               {{globleapi.convertDate(item.date)}}
+             </ion-note>
+           </ion-col>
+         </ion-row>
+       </div>
+     </ion-grid>
+
+     <ion-grid>
+       <div *ngFor="let item of searchList; let i = index">
+         <ion-row class="article_group">
+           <ion-col (click)="pushPage(item)" size="11">
+             <h2 class="post_title item-text-wrap" [innerHTML]="item.title"></h2>
+             <ion-note class="post-date">
+               <ion-icon name="calendar"></ion-icon>
+               {{globleapi.convertDate(item.date)}}
+             </ion-note>
+           </ion-col>
+         </ion-row>
+       </div>
+     </ion-grid>
+   </div>
+ </ion-content>

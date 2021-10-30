@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="makeAdjust" align-title="center" mode="ios"> <img src="assets/logo.png" width="80px">
+    </ion-title>
+    <ion-buttons slot="end" *ngIf="articleList.length > 0" class="editIcoWrap" (click)="editItems($event)"
+      class="toggleSearch">
+      <span class="editIco">
+        <ion-icon name="edit"></ion-icon> Edit
+      </span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="divcenter" *ngIf="articleList.length > 0">
+    <h2> My Saved Articles </h2>
+    <p> Saved articles from the main post to be read later. </p>
+  </div>
+  <div id="empty_state" *ngIf="articleList.length == 0">
+    <img src="assets/open-box.png">
+    <h1> No Articles Saved! </h1>
+    <p> Get started saving articles by selecting the star icon <ion-icon name="star-outline"></ion-icon> next to the
+      article </p>
+  </div>
+
+  <ion-grid>
+    <!--<div @itemState *ngFor="let item of articleList; let i = index">-->
+    <div *ngFor="let item of articleList; let i = index">
+      <ion-row class="article_group">
+        <ion-col (click)="pushPage(item)" size="11">
+          <h2 class="post_title item-text-wrap">{{ item.title }}</h2>
+          <ion-note class="post-date">{{ convertDate(item.date) }}</ion-note>
+        </ion-col>
+        <ion-col *ngIf="editAvailable" (click)="removeArticle(item, $event)" size="1">
+          <ion-icon name="close" class="removeSection" style="float: right;"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+ 
+</ion-content>

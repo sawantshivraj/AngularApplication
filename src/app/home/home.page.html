@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="makeAdjust" align-title="center" mode="ios"> <img src="assets/logo.png" width="80px">
+    </ion-title>
+    <ion-buttons slot="end">
+      <button ion-button right (click)="openModal({charNum: 1})" class="toggleSearch">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid no-padding>
+    <h1 class="specialH1"> {{headingName}} </h1>
+    <div *ngFor="let item of items; let i = index" no-padding no-margin>
+      <div class="card-background-page card-special" *ngIf="i == 0" (click)="pushPage(item)">
+        <ion-card no-padding no-margin class="fullwidth">
+          <img src="{{item.post_image}}" />
+          <div class="card-title" [innerHTML]="item.title"></div>
+        </ion-card>
+      </div>
+      <ion-row ngClass="article_preview_wrap {{ checkCardSpecial(item.date) }}" *ngIf="i > 0">
+        <ion-col (click)="pushPage(item)" size="4" no-padding class="post-image"
+          [ngStyle]="{'background-image': 'url(' + item.post_image + ')' }">
+        </ion-col>
+        <ion-col (click)="pushPage(item)" size="7" padding class="item-text-wrap">
+          <div class="postCategory" [innerHTML]="item.category"></div>
+          <h2 class="post_title" [innerHTML]="item.title"></h2>
+          <ion-note class="post-date">
+            <ion-icon name="calendar"></ion-icon> {{globleapi.convertDate(item.date)}}
+          </ion-note>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon style="zoom:1.3;" *ngIf="item.savedState == -1" (click)="saveArticle(item, $event)"
+            name="star-outline" class="saveArticleIcon ext-right"></ion-icon>
+          <ion-icon style="zoom:1.3;" *ngIf="item.savedState != -1" (click)="removeArticle(item, $event)" name="star"
+            class="saveArticleIcon color_blue ext-right"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="groupLoader" *ngIf="loadingActive == true">
+      <ion-row no-padding class="article_preview_wrap">
+        <ion-col size="4" no-padding class="post-image"> <span class="load_fill"></span> </ion-col>
+        <ion-col size="7" padding class="item-text-wrap">
+          <div class="postCategory"> <span class="load_fill load_fill_category"></span> </div>
+          <h2 class="post_title"> <span class="load_fill"></span> <span class="load_fill"></span> </h2>
+          <ion-note class="post-date"> <span class="load_fill"></span> </ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding class="article_preview_wrap">
+        <ion-col size="4" no-padding class="post-image"> <span class="load_fill"></span> </ion-col>
+        <ion-col size="7" padding class="item-text-wrap">
+          <div class="postCategory"> <span class="load_fill load_fill_category"></span> </div>
+          <h2 class="post_title"> <span class="load_fill"></span> <span class="load_fill"></span> </h2>
+          <ion-note class="post-date"> <span class="load_fill"></span> </ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding class="article_preview_wrap">
+        <ion-col size="4" no-padding class="post-image"> <span class="load_fill"></span> </ion-col>
+        <ion-col size="7" padding class="item-text-wrap">
+          <div class="postCategory"> <span class="load_fill load_fill_category"></span> </div>
+          <h2 class="post_title"> <span class="load_fill"></span> <span class="load_fill"></span> </h2>
+          <ion-note class="post-date"> <span class="load_fill"></span> </ion-note>
+        </ion-col>
+      </ion-row>
+
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="35%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-grid>
+
+  <div *ngIf="moreArticlesAlert" class="articlesMoreHover"> New Articles Available </div>
+</ion-content>

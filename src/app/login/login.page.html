@@ -1,0 +1,61 @@
+<ion-content class="login-content">
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="assets/logo.png" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box" *ngIf="verfyStep1">
+    <form (ngSubmit)="checkMobileNoVerification()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset style="background-color: transparent;">
+            <h1 style="color: white;"> Verify Phone Number </h1>
+            <p style="color: white;"> We will send you a SMS message to verify your phone number.</p>
+            <ion-input class="phoneInput" type="tel" placeholder="Phone Number" name="tel"
+              [(ngModel)]="credentials.telephone" required></ion-input>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="signup-col">
+          <ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Verify</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+
+  <div class="login-box" *ngIf="verfyStep2">
+    <form (ngSubmit)="LoginUsingVerifyCode()" #loginForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset style="background-color: transparent;">
+
+            <h1 style="color: white;"> Enter Verification Number </h1>
+            <ion-input class="phoneInput" type="tel" placeholder="" name="tel" [(ngModel)]="credentials.verification"
+              required></ion-input>
+            <p style="color: red;">{{sendState}}</p>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+
+        <ion-col class="signup-col">
+          <ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.form.valid">Login
+            <ion-spinner color="light" *ngIf="loginAction"></ion-spinner>
+          </ion-button>
+          <br /><br />
+          <div class="col-sm-12" style="color: cornsilk;" (click)="retryVerificationNumber()"> Resend SMS </div>
+          <br />
+          <div class="col-sm-12" style="color: cornsilk;" (click)="reenterNumber()"> Re-enter Number </div>
+        </ion-col>
+
+      </ion-row>
+
+    </form>
+  </div>
+
+</ion-content>

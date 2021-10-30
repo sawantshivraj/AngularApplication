@@ -1,0 +1,54 @@
+p {
+    line-height: 33px;
+    font-size: 16px;
+}
+
+ul {
+    float: left;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+li {
+    line-height: 33px;
+    font-size: 16px;
+}
+
+.scroll-content {
+    top: 0px;
+}
+
+.small_info {
+    font-size: 12px;
+}
+
+#mainHeader {
+    display: none;
+}
+
+super-tabs-toolbar {
+    display: none;
+}
+
+.show-page {
+    z-index: 101;
+    top: -113px;
+    z-index: 100;
+    display: inline;
+}
+
+#postContent {
+    // margin-top: 50px;
+    padding: 7px;
+}
+
+#postContent iframe {
+    width: 100% !important;
+    height: 300px;
+    position: relative;
+}
+
+.postHeader {
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}

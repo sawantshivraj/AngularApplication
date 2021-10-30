@@ -1,0 +1,22 @@
+.login-box {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.login-box h1 {
+    font-weight: 100;
+}
+
+.phoneInput {
+    font-size: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    background: #fff;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #000;
+    border-radius: 30px;
+}
+
+.login-content {
+    --background: url(../../assets/login.jpg) 0 0/100% 100% no-repeat;
+}

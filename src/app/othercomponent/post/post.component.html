@@ -1,0 +1,27 @@
+<ion-header class="postHeader">
+  <ion-toolbar>
+    <ion-title>News Article</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="closeModal();"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding *ngIf="contentLoaded == true">
+  <div class="selection" id="postContent">
+    <h2 [innerHTML]="stitle"></h2>
+    <ion-row>
+      <ion-col>
+        <ion-note class="small_info">
+          <ion-icon name="time"></ion-icon> {{ globleapi.convertDate(postDate) }}
+        </ion-note>
+      </ion-col>
+      <!-- <ion-col *ngIf="readTime" text-right class="small_info">Read Time {{readTime}}</ion-col> -->
+    </ion-row>
+
+    <div id="contentInnerSection" (click)="checkContent($event);" [innerHTML]="articleContent"></div>
+
+    <div *ngIf="articleError" class="text-center">
+      <h4> Unable to get article, article maybe removed or an internet connection to the server is unavailable.</h4>
+    </div>
+  </div>
+</ion-content>
